@@ -27,4 +27,15 @@ export class RoleService {
     }
     return [];
   }
+
+  getEmployeeName() {
+    if (this.cookieService.check('token')) {
+      try {
+        const a = this.jwtDecode(this.cookieService.get('token'));
+        console.log(a);
+        return this.jwtDecode(this.cookieService.get('token')).sub;
+      } catch (Error) { }
+    }
+    return '';
+  }
 }

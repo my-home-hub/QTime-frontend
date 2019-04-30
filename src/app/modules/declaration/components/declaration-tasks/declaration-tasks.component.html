@@ -1,6 +1,5 @@
 <div class="btn-wrapper">
-  <h1>Declarations</h1>
-  <button class="btn-standard btn-small" routerLink="/declaration/create">Create</button>
+  <h1>Unapproved Declarations</h1>
 </div>
 
 <div class="card">
@@ -10,18 +9,14 @@
       <tr>
         <th>Date.</th>
         <th>Costs.</th>
-        <th>Status.</th>
+        <th>Employee.</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let element of dataSource" (click)="navigate(element.id)">
         <td data-title="Date.">{{element.date | date: 'dd/MM/yyyy'}}</td>
         <td data-title="Costs.">{{element.costs}}</td>
-        <td data-title="Status.">
-          <p class="processing" *ngIf="!element.approvedLocal && !element.approvedGlobal">Processing</p>
-          <p class="checked" *ngIf="element.approvedLocal && !element.approvedGlobal">Checked</p>
-          <p class="approved" *ngIf="element.approvedLocal && element.approvedGlobal">Approved</p>
-        </td>
+        <td data-title="Employee.">{{element.employee}}</td>
       </tr>
       </tbody>
     </table>

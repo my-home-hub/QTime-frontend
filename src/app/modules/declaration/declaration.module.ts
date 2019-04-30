@@ -8,12 +8,14 @@ import { CreateComponent } from './components/create/create.component';
 import { DeclarationDashboardComponent } from './components/declaration-dashboard/declaration-dashboard.component';
 import { DeclarationComponent } from './components/declaration/declaration.component';
 import { DeclarationService } from './services/declaration.service';
+import { DeclarationTasksComponent } from './components/declaration-tasks/declaration-tasks.component';
 
 @NgModule({
   declarations: [
     CreateComponent,
     DeclarationComponent,
-    DeclarationDashboardComponent
+    DeclarationDashboardComponent,
+    DeclarationTasksComponent
   ],
   imports: [
     BrowserModule,

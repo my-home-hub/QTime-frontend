@@ -5,6 +5,7 @@ import { Role } from '../../shared/models/role';
 import { DeclarationDashboardComponent } from './components/declaration-dashboard/declaration-dashboard.component';
 import { CreateComponent } from './components/create/create.component';
 import { DeclarationComponent } from './components/declaration/declaration.component';
+import { DeclarationTasksComponent } from './components/declaration-tasks/declaration-tasks.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DeclarationDashboardComponent
+      },
+      {
+        path: 'task-dashboard',
+        component: DeclarationTasksComponent
       },
       {
         path: 'create',

@@ -13,12 +13,20 @@ export class DeclarationService {
     return this.httpClient.get<Declaration>(`/api/declaration/${id}`);
   }
 
-  fetchDeclarations() {
+  fetchDeclarations(employee: string) {
+    return this.httpClient.get<Declaration[]>(`/api/declaration?employee=${employee}`);
+  }
+
+  fetchOpenDeclarations() {
     return this.httpClient.get<Declaration[]>(`/api/declaration`);
   }
 
   createDeclaration(declaration) {
     return this.httpClient.post(`/api/process/declaration`, declaration, { responseType: 'text' as 'json' });
+  }
+
+  fetchDeclarationImage(imageId: number) {
+    return this.httpClient.get(`/api/declaration/image/${imageId}`, { responseType: 'blob' });
   }
 
   approveLocalDeclaration(instanceId: string) {

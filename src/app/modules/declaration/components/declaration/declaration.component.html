@@ -1,31 +1,37 @@
-<div class="card">
+<div class="breadcrumbs">
+  <div class="card">
+    <a routerLink="/declaration/dashboard" class="breadcrumbs__link">&#8592; back to declarations</a>
+  </div>
+</div>
 
-  <h1>Declaration {{declaration?.id}}</h1>
+<h1>Declaration {{declaration.date}}</h1>
+<div class="card card__no-padding">
+  <div class="declaration-wrapper">
 
-  <form class="declaration__form" [formGroup]="declarationForm">
-
-    <div class="group">
-      <input type="text" id="description" name="description" formControlName="description" required>
-      <span class="highlight"></span>
-      <span class="bar"></span>
-      <label for="description">Description</label>
+    <div class="declaration-img">
+      <img (click)="enlargeImage()" *ngIf="!isImageLoading && image" class="declaration-img__img" [src]="image" alt="Declaration image">
     </div>
 
-    <div class="group">
-      <input type="text" id="costs" name="costs" formControlName="costs" required>
-      <span class="highlight"></span>
-      <span class="bar"></span>
-      <label for="costs">Costs</label>
+    <div class="declaration-wrapper__content">
+      <p>{{declaration.description}}</p>
+      <p><strong>costs:</strong> {{declaration.costs}}</p>
+      <p><strong>employee:</strong> {{declaration.employee}}</p>
+      <button class="btn-standard btn-approve" (click)="approveGlobalDeclaration()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+          <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"></path>
+        </svg>
+        Approve
+      </button>
+
+      <button class="btn-standard btn-green" (click)="generatePDF()">Generate</button>
     </div>
 
-    <div class="group">
-      <input type="text" id="employee" name="employee" formControlName="employee" required>
-      <span class="highlight"></span>
-      <span class="bar"></span>
-      <label for="employee">Employee</label>
-    </div>
+    <button *ngIf="containsRole('ROLE_MANAGEMENT_ASSISTANT')" class="btn-standard btn-orange btn-margin" (click)="approveLocalDeclaration()">Approve</button>
+    <button *ngIf="containsRole('ROLE_MANAGER')" class="btn-standard btn-green" (click)="approveGlobalDeclaration()">Approve</button>
+  </div>
+</div>
 
-  </form>
-  <button *ngIf="containsRole('ROLE_MANAGEMENT_ASSISTANT')" class="btn-standard btn-orange btn-margin" (click)="approveLocalDeclaration()">Approve</button>
-  <button *ngIf="containsRole('ROLE_MANAGER')" class="btn-standard btn-green" (click)="approveGlobalDeclaration()">Approve</button>
+<div id="myModal" class="modal" (click)="closeEnlargement()" [ngClass]="{'display': modal}">
+  <span class="close" (click)="closeEnlargement()">&times;</span>
+  <img class="modal-content" id="img01" *ngIf="!isImageLoading && image"  [src]="image" alt="Declaration image">
 </div>

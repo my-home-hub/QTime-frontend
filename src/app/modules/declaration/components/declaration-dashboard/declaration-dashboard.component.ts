@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { RoleService } from '../../services/role.service';
 
 @Component({
-  selector: 'lib-declaration-dashboard',
+  selector: 'app-declaration-dashboard',
   templateUrl: './declaration-dashboard.component.html',
   styleUrls: ['./declaration-dashboard.component.scss']
 })
@@ -15,7 +15,8 @@ export class DeclarationDashboardComponent implements OnInit {
 
   constructor(private declarationService: DeclarationService,
               private roleService: RoleService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.fetchDeclarations();
@@ -43,7 +44,7 @@ export class DeclarationDashboardComponent implements OnInit {
    * @description Fetches all declarations
    */
   fetchDeclarations() {
-    this.declarationService.fetchDeclarations()
+    this.declarationService.fetchDeclarations(this.roleService.getEmployeeName())
       .subscribe((declarations: Declaration[]) => {
         this.dataSource = declarations;
       }, console.error);

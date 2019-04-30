@@ -4,12 +4,39 @@
   }
 }
 
-.card {
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  -webkit-box-shadow: 0 2px 1px -1px rgba(0,0,0,.3);
-  -moz-box-shadow: 0 2px 1px -1px rgba(0,0,0,.3);
-  box-shadow: 0 2px 1px -1px rgba(0,0,0,.3);
-  border-radius: 3px;
+.file-upload {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+
+  &__input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &__info {
+    font-size: 0.9em;
+  }
+
+  &__btn {
+    background-color: #46A6C1;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  &__btn svg {
+    width: 1.3em;
+    height: 1.3em;
+    vertical-align: middle;
+    fill: #ffffff;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+  }
 }

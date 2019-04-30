@@ -4,7 +4,7 @@ import { DeclarationService } from '../../services/declaration.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'lib-create',
+  selector: 'app-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss']
 })
@@ -12,6 +12,7 @@ export class CreateComponent implements OnInit {
 
   createForm: FormGroup;
   file: File;
+  labelText = 'Upload a file';
 
   constructor(private formBuilder: FormBuilder,
               private declarationService: DeclarationService,
@@ -24,6 +25,7 @@ export class CreateComponent implements OnInit {
   ngOnInit() {
     this.createForm = this.formBuilder.group({
       file: ['', Validators.required],
+      date: ['', Validators.required],
       description: ['', Validators.required],
       costs: ['', Validators.required]
     });
@@ -34,6 +36,13 @@ export class CreateComponent implements OnInit {
    */
   get fileProp() {
     return this.createForm.get('file');
+  }
+
+  /**
+   * @return `date` control
+   */
+  get date() {
+    return this.createForm.get('date');
   }
 
   /**
@@ -56,6 +65,7 @@ export class CreateComponent implements OnInit {
    */
   onFileChange(event) {
     this.file = event.target.files[0];
+    this.labelText = this.file.name;
   }
 
   /**
