@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="btn-wrapper">
+    <button class="btn-standard" routerLink="/declaration/create">Create</button>
+  </div>
+
+  <div class="table-responsive-vertical shadow-z-1">
+    <table id="table" class="table table-hover table-mc-light-blue">
+      <thead>
+      <tr>
+        <th>Costs</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let element of dataSource">
+        <td data-title="Costs">{{element.costs}}</td>
+        <td data-title="Status">
+          <p class="processing" *ngIf="!element.approvedLocal && !element.approvedGlobal">Processing</p>
+          <p class="checked" *ngIf="element.approvedLocal && !element.approvedGlobal">Checked</p>
+          <p class="approved" *ngIf="element.approvedLocal && element.approvedGlobal">Approved</p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,364 @@
+.page {
+  display: flex;
+  height: 100%;
+}
+
+header {
+  flex: 0 0 300px;
+  min-height: 100vh;
+  height: 100%;
+  position: fixed;
+  border-right: 2px solid rgba(128, 128, 128, 0.3);
+  text-align: left;
+  width: 300px;
+  padding: 0 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  visibility: hidden;
+  z-index: 12;
+}
+
+.navigation {
+  z-index: 15;
+}
+
+.logo {
+  height: 200px;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  line-height: 200px;
+  box-sizing: border-box;
+}
+
+.logo span {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  &__item {
+    padding: 5px 30px 5px 30px;
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  &__item:focus {
+    outline: none;
+  }
+
+  &__item span {
+    display: inline-block;
+    vertical-align: bottom;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 0 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    border-right: 4px solid transparent;
+  }
+
+  &__item span:hover {
+    color: #9c4147;
+    cursor: pointer;
+  }
+
+  &__item span:focus {
+    outline: 0;
+    border-right: 4px solid #ffffff;
+  }
+
+  &__icon {
+    vertical-align: middle;
+    color: #ffffff;
+  }
+}
+
+@media (min-width: 768px) {
+  .main-menu {
+    visibility: visible;
+    background: #ad4848;
+  }
+  .nav {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    display: block;
+  }
+
+  .main-menu {
+    flex: none;
+    width: 100%;
+    top: 0;
+  }
+
+  .logo,
+  .nav-list__item {
+    transition: all .2s cubic-bezier(0.000, 0.995, 0.990, 1.000) .2s;
+  }
+}
+
+// ---------------------------------------------------------------------------------------------------------
+// || * * *                   Main section                                                          * * * ||
+// ---------------------------------------------------------------------------------------------------------
+.main-section {
+  flex: 1 0 auto;
+  position: relative;
+  margin-left: 300px;
+}
+
+@media (max-width: 768px) {
+  .main-section {
+    margin-left: 0;
+  }
+}
+
+// ---------------------------------------------------------------------------------------------------------
+// || * * *                   Top navigation bar                                                    * * * ||
+// ---------------------------------------------------------------------------------------------------------
+.top-nav {
+  height: 80px;
+  display: block;
+  position: relative;
+}
+
+// ---------------------------------------------------------------------------------------------------------
+// || * * *                   Hamburger icon (Icon top left)                                        * * * ||
+// ---------------------------------------------------------------------------------------------------------
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+}
+
+.hamburger-toggle {
+  display: inline-block;
+  position: absolute;
+  z-index: 12;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  outline: 0;
+  left: 15px;
+  top: 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color .15s linear;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+@function circumference($r){
+  $pi: 3.141592653;
+  @return 2*$pi*$r;
+}
+
+.hamburger-icon {
+  display: block;
+  cursor: pointer;
+  color: #a0a0a0;
+  transform: rotate(0deg);
+  transition: .3s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+
+  &__bar,
+  &__circle {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 3;
+    stroke-linecap: round;
+  }
+  &__bar {
+    transform: rotate(0deg);
+    transform-origin: 50% 50%;
+    transition: transform .25s ease-in-out;
+  }
+  &__circle {
+    transition: stroke-dashoffset .3s linear .1s;
+    stroke-dashoffset: circumference(23);
+    stroke-dasharray: circumference(23);
+  }
+}
+
+.max-splash {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.splash {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  width: 1px;
+  height: 1px;
+  z-index: 11;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #ad4848;
+    width: 284vmax;
+    height: 284vmax;
+    top: -142vmax;
+    right: -142vmax;
+    transform: scale(0);
+    transform-origin: 50% 50%;
+    transition: transform .5s cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    will-change: transform;
+  }
+}
+
+.hamburger:target,
+.hamburger__open {
+  > .max-splash .splash::after {
+    transform: scale(1);
+  }
+
+  .hamburger-icon {
+    color: white;
+    transform: rotate(180deg);
+
+    &__circle {
+      stroke-dashoffset: 0;
+    }
+    &__bar:nth-child(1),
+    &__bar:nth-child(4) {
+      opacity: 0;
+    }
+    &__bar:nth-child(2) {
+      transform: rotate(45deg);
+    }
+    &__bar:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------------------------------------
+// || * * *                   Personal Section (Icon top right)                                     * * * ||
+// ---------------------------------------------------------------------------------------------------------
+.personal-section {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+}
+
+.account {
+  z-index: 2;
+  display: flex;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.account-avatar {
+  width: 45px;
+  height: 44px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-border-radius: 99em;
+  -moz-border-radius: 99em;
+  border-radius: 99em;
+  border: 2px solid #eee;
+  vertical-align: middle;
+}
+
+.dropdown:focus,
+.account:focus {
+  outline: 0;
+}
+
+.account-dropdown {
+  position: absolute;
+  z-index: 2;
+  width: 135px;
+  display: none;
+  right: 10px;
+  border-radius: 6px;
+}
+
+.account-menu {
+  list-style: none;
+  font-size: 11px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  background: #fff;
+  padding: 10px 0 10px 0;
+  border-radius: 5px 5px 5px 5px;
+}
+
+.account-menu:before {
+  content: '';
+  display: inline-block;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #ccc;
+  border-bottom-color: #ffffff;
+  position: absolute;
+  color: #ffffff;
+  top: 6px;
+  right: 17px;
+}
+
+.account-menu__item a {
+  color: #555555;
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 15px 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.account-menu__item a:hover {
+  background: #efefef;
+  text-decoration: none;
+}
+
+
+// ---------------------------------------------------------------------------------------------------------
+// || * * *                   Visibility                                                            * * * ||
+// ---------------------------------------------------------------------------------------------------------
+.display {
+  display: block;
+}
+
+.visibility {
+  visibility: visible;
+}
+
+// ---------------------------------------------------------------------------------------------------------
+// || * * *                   Rest of page                                                          * * * ||
+// ---------------------------------------------------------------------------------------------------------
+.router-outlet {
+  padding: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}

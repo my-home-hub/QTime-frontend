@@ -1,0 +1,75 @@
+.login-page {
+  display: flex;
+  min-height: 100vh;
+  background: #ffffff;
+
+  &__img {
+    min-height: 100%;
+    width: 100%;
+    background: #9C032D;
+    background: url('https://i.ibb.co/vcTcR4Z/home-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
+  &__container {
+    flex: 0 0 800px;
+    padding: 100px 100px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .login-page {
+    display: block;
+  }
+
+  .login-page__img {
+    display: none;
+  }
+
+  .login-page__container {
+    flex: none;
+    width: 100%;
+    padding: 50px 50px;
+  }
+}
+
+.login-page__container h1 {
+  color: #9C032D;
+  font-size: 35px;
+  letter-spacing: 10px;
+  font-weight: bold;
+}
+
+.login-page__container p {
+  font-size: 18px;
+  color: #4D4F5C;
+  opacity: 0.5;
+}
+
+.login-form {
+  width: 400px;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+  .login-form {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .login-page__container h1 {
+    font-size: 25px;
+  }
+
+  .login-page__container p {
+    font-size: 14px;
+    color: #4D4F5C;
+    opacity: 0.5;
+  }
+}

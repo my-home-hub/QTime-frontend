@@ -1,0 +1,52 @@
+<div class="card">
+  <h1>Create declaration</h1>
+  <p>This page starts a new process, which returns the process key</p>
+  <div>
+    <form [formGroup]="createForm" class="create__form" (ngSubmit)="createDeclaration()">
+
+      <div class="group">
+        <input type="file" id="file" name="file" formControlName="file" (change)="onFileChange($event)" required>
+      </div>
+
+      <div class="error-wrapper">
+        <div *ngIf="fileProp.invalid && (fileProp.dirty || fileProp.touched)" class="error-msg">
+          <div *ngIf="fileProp.errors.required">
+            File is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <input type="text" id="description" name="description" formControlName="description" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="description">Description</label>
+      </div>
+
+      <div class="error-wrapper">
+        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="error-msg">
+          <div *ngIf="description.errors.required">
+           Description is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <input type="text" id="costs" name="costs" formControlName="costs" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="costs">Costs</label>
+      </div>
+
+      <div class="error-wrapper">
+        <div *ngIf="costs.invalid && (costs.dirty || costs.touched)" class="error-msg">
+          <div *ngIf="costs.errors.required">
+            Costs is required.
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-standard">Create</button>
+    </form>
+  </div>
+</div>

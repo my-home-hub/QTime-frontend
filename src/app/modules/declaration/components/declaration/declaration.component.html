@@ -1,0 +1,31 @@
+<div class="card">
+
+  <h1>Declaration {{declaration?.id}}</h1>
+
+  <form class="declaration__form" [formGroup]="declarationForm">
+
+    <div class="group">
+      <input type="text" id="description" name="description" formControlName="description" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label for="description">Description</label>
+    </div>
+
+    <div class="group">
+      <input type="text" id="costs" name="costs" formControlName="costs" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label for="costs">Costs</label>
+    </div>
+
+    <div class="group">
+      <input type="text" id="employee" name="employee" formControlName="employee" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label for="employee">Employee</label>
+    </div>
+
+  </form>
+  <button *ngIf="containsRole('ROLE_MANAGEMENT_ASSISTANT')" class="btn-standard btn-orange btn-margin" (click)="approveLocalDeclaration()">Approve</button>
+  <button *ngIf="containsRole('ROLE_MANAGER')" class="btn-standard btn-green" (click)="approveGlobalDeclaration()">Approve</button>
+</div>

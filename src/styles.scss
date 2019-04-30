@@ -1,0 +1,165 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #f9f9f9;
+  font-family: 'Roboto', sans-serif;
+}
+
+.group {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"] {
+  font-size: 15px;
+  padding: 10px 10px 10px 5px;
+  background: none;
+  display: block;
+  width: 400px;
+  border: none;
+  border-bottom: 1px solid #757575;
+}
+
+input[type="date"] ~ label {
+  top: -20px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus {
+  outline: none;
+}
+
+label {
+  color: #999;
+  font-size: 15px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+input[type="text"]:focus ~ label,
+input[type="password"]:focus ~ label,
+input[type="text"]:valid ~ label,
+input[type="password"]:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #9C032D;
+}
+
+input[type="date"]:focus ~ label,
+input[type="date"]:valid ~ label {
+  font-size: 14px;
+  color: #9C032D;
+}
+
+.bar {
+  position: relative;
+  display: block;
+  width: 400px;
+}
+
+.bar:before, .bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #9C032D;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+  left: 50%;
+}
+
+.bar:after {
+  right: 50%;
+}
+
+input[type="text"]:focus ~ .bar:before,
+input[type="password"]:focus ~ .bar:before,
+input[type="date"]:focus ~ .bar:before,
+input[type="text"]:focus ~ .bar:after,
+input[type="password"]:focus ~ .bar:after,
+input[type="date"]:focus ~ .bar:after {
+  width: 50%;
+}
+
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .bar,
+  input[type="text"],
+  input[type="password"],
+  input[type="date"] {
+    width: 100%;
+  }
+}
+
+.error-wrapper {
+  min-height: 50px;
+  width: 100%;
+}
+
+.error-msg {
+  color: #9c032c;
+  text-align: left;
+}
+
+.btn-standard {
+  background-color: #ad4848;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 12px 80px;
+  text-decoration: none;
+  border: none;
+  text-transform: uppercase;
+}
+
+.btn-standard:hover {
+  background-color: #9c032c;
+}
+
+.btn-standard:active {
+  position: relative;
+  top: 1px;
+}
+
+.btn-standard:focus {
+  outline: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .btn-standard {
+    font-size: 14px;
+    padding: 10px 60px;
+  }
+}

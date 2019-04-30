@@ -1,0 +1,49 @@
+<div class="login-page">
+
+  <div class="login-page__img">
+  </div>
+
+  <div class="login-page__container">
+
+    <h1>QTIME</h1>
+    <p>Welcome back! Please login to your account.</p>
+
+    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="login()">
+      <div class="group">
+        <input type="text" id="username" name="username" formControlName="username" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="username">Username</label>
+      </div>
+
+      <div class="error-wrapper">
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="error-msg">
+          <div *ngIf="username.errors.required">
+            Username is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <input type="password" id="password" name="password" formControlName="password" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="password">Password</label>
+      </div>
+
+      <div class="error-wrapper">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-msg">
+          <div *ngIf="password.errors.required">
+            Password is required.
+          </div>
+        </div>
+
+        <div *ngIf="password.errors && password.errors.invalidCredentials" class="error-msg">
+          Invalid credentials
+        </div>
+      </div>
+
+      <button class="btn-standard">Sign in</button>
+    </form>
+  </div>
+</div>

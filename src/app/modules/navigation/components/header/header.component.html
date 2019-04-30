@@ -1,0 +1,74 @@
+<div class="page">
+
+  <header id="main-menu" class="main-menu" [ngClass]="{'visibility': toggled}">
+
+    <nav aria-label="main navigation" class="navigation">
+      <div class="logo">
+        <span>QTIME</span>
+      </div>
+      <ul aria-label="main navigation items" class="nav-list">
+        <li class="nav-list__item">
+          <span (click)="navigateToUrl('timesheet')">Timesheet</span>
+        </li>
+        <li class="nav-list__item">
+          <span (click)="navigateToUrl('statistics')">Statistic</span>
+        </li>
+        <li class="nav-list__item">
+          <span (click)="navigateToUrl('declaration/dashboard')">Declaration</span>
+        </li>
+        <li class="nav-list__item">
+          <span (click)="navigateToUrl('export')">Export</span>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="main-section">
+    <div class="top-nav">
+
+      <div class="hamburger" [ngClass]="{'hamburger__open': toggled}" role="navigation">
+        <a class="hamburger-toggle" role="button" (click)="toggleNavigation()">
+          <svg class="hamburger-icon" width="50" height="50" viewBox="0 0 50 50">
+            <title>Toggle Menu</title>
+            <g>
+              <line class="hamburger-icon__bar" x1="13" y1="16.5" x2="37" y2="16.5"></line>
+              <line class="hamburger-icon__bar" x1="13" y1="24.5" x2="37" y2="24.5"></line>
+              <line class="hamburger-icon__bar" x1="13" y1="24.5" x2="37" y2="24.5"></line>
+              <line class="hamburger-icon__bar" x1="13" y1="32.5" x2="37" y2="32.5"></line>
+              <circle class="hamburger-icon__circle" r="23" cx="25" cy="25"></circle>
+            </g>
+          </svg>
+        </a>
+        <div class="max-splash">
+        <div class="splash"></div>
+        </div>
+      </div>
+
+      <div class="personal-section">
+        <a class="account"
+           (clickOutside)="disableAccountNavigation()"
+           (click)="toggleAccountNavigation()">
+
+          <img src="https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1090&q=80"
+               alt="Account avatar"
+               class="account-avatar"
+               role="presentation"/>
+        </a>
+        <div class="account-dropdown" [ngClass]="{'display': accountToggle}">
+          <ul class="account-menu">
+            <li class="account-menu__item">
+              <a href="#">Profile</a>
+            </li>
+            <li class="account-menu__item">
+              <a (click)="logOut()">Sign Out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="router-outlet">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+</div>
