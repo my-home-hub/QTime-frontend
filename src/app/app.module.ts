@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavigationModule } from './modules/navigation/navigation.module';
 import { AppRoutingModule } from './app-routing.module';
-import { MatIconModule } from '@angular/material';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { DeclarationModule } from './modules/declaration/declaration.module';
@@ -23,8 +22,7 @@ import { TimesheetModule } from './modules/timesheet/timesheet.module';
     DeclarationModule,
     StatisticsModule,
     TimesheetModule,
-    NavigationModule,
-    MatIconModule
+    NavigationModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
