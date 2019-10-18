@@ -1,47 +1,51 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Declaration} from '../models/declaration';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Declaration } from '../models/declaration';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DeclarationService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  fetchOneDeclaration(id: string) {
+  fetchOneDeclaration(id: string): Observable<Declaration> {
     return this.httpClient.get<Declaration>(`/api/declaration/${id}`);
   }
 
-  fetchDeclarations(employee: string) {
+  fetchDeclarations(employee: string): Observable<Declaration[]> {
     return this.httpClient.get<Declaration[]>(`/api/declaration?employee=${employee}`);
   }
 
-  fetchOpenDeclarations() {
-    return this.httpClient.get<Declaration[]>(`/api/declaration`);
+  fetchOpenDeclarations(): Observable<Declaration[]> {
+    return this.httpClient.get<Declaration[]>('/api/declaration');
   }
 
-  createDeclaration(declaration) {
-    return this.httpClient.post(`/api/process/declaration`, declaration, { responseType: 'text' as 'json' });
+  createDeclaration(declaration): Observable<any> {
+    return this.httpClient.post('/api/process/declaration', declaration, { responseType: 'text' as 'json' });
   }
 
-  fetchDeclarationImage(imageId: number) {
+  fetchDeclarationImage(imageId: number): Observable<any> {
     return this.httpClient.get(`/api/declaration/image/${imageId}`, { responseType: 'blob' });
   }
 
-  approveLocalDeclaration(instanceId: string) {
+  approveLocalDeclaration(instanceId: string): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
-    return this.httpClient.put(`/api/process/declaration/local/${instanceId}`,
-      {approvedLocal: true},
-      { headers, responseType: 'text' as 'json' });
+    return this.httpClient.put(
+      `/api/process/declaration/local/${instanceId}`,
+      { approvedLocal: true },
+      { headers, responseType: 'text' as 'json' },
+    );
   }
 
-  approveGlobalDeclaration(instanceId: string) {
+  approveGlobalDeclaration(instanceId: string): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
-    return this.httpClient.put(`/api/process/declaration/global/${instanceId}`,
+    return this.httpClient.put(
+      `/api/process/declaration/global/${instanceId}`,
       { approvedGlobal: true },
-      { headers, responseType: 'text' as 'json' });
+      { headers, responseType: 'text' as 'json' },
+    );
   }
 }

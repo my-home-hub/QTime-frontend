@@ -5,20 +5,16 @@ import { AuthenticationService } from './modules/authentication/services/authent
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
   loggedIn = false;
 
-  constructor(private cookieService: CookieService,
-              private authService: AuthenticationService) {
-  }
+  constructor(private cookieService: CookieService, private authService: AuthenticationService) {}
 
   ngOnInit(): void {
-    this.authService.tokenSubscription
-      .subscribe(() => {
-        this.loggedIn = this.cookieService.check('token');
-      });
+    this.authService.tokenSubscription.subscribe(() => {
+      this.loggedIn = this.cookieService.check('token');
+    });
   }
 }

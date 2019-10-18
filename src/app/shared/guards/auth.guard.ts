@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
-
   // JWT decoder is casted to a variable to allow mocking
-  jwtDecode = jwt_decode;
+  jwtDecode = jwtDecode;
 
-  constructor(private router: Router,
-              private cookieService: CookieService) {}
+  constructor(private router: Router, private cookieService: CookieService) {}
 
   /**
    * @description Guard to check whether a user has the correct privileges to access
@@ -23,10 +21,9 @@ export class AuthGuard implements CanActivate {
    * Finally the roles are formatted and checked against the required page roles.
    *
    * @param route - the current page route
-   * @param state - the current page snapshot
    * @return boolean - whether a navigation may complete
    */
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate(route: ActivatedRouteSnapshot): boolean {
     if (!this.cookieService.check('token')) {
       this.router.navigate(['/']);
       return false;
@@ -34,9 +31,9 @@ export class AuthGuard implements CanActivate {
     const token = this.cookieService.get('token');
 
     try {
-      const role_string = this.jwtDecode(token).role;
-      const roles = role_string.split(' ');
-      return roles && route.data.roles.some(x => roles.indexOf(x) >= 0);
+      const roleString = this.jwtDecode(token).role;
+      const roles = roleString.split(' ');
+      return roles && route.data.roles.some((x) => roles.indexOf(x) >= 0);
     } catch (Error) {
       this.cookieService.delete('token');
       this.router.navigate(['/']);

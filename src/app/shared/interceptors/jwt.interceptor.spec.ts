@@ -11,18 +11,15 @@ describe('Jwt Interceptor', () => {
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
-    TestBed.configureTestingModule(
-      {
-        imports: [
-          HttpClientTestingModule
-        ],
-        providers: [
-          AuthenticationService,
-          CookieService,
-          JwtInterceptor,
-          { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        ]
-      });
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [
+        AuthenticationService,
+        CookieService,
+        JwtInterceptor,
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+      ],
+    });
     authenticationService = TestBed.get(AuthenticationService);
     httpTestingController = TestBed.get(HttpTestingController);
   });
@@ -31,39 +28,36 @@ describe('Jwt Interceptor', () => {
     httpTestingController.verify();
   });
 
-
   it('should be created', () => {
     const interceptor: JwtInterceptor = TestBed.get(JwtInterceptor);
     expect(interceptor).toBeTruthy();
   });
 
-  it('should not set the Authorization header if the token is null',
-    inject([HttpClient], (http: HttpClient) => {
-      http.get('/api')
-        .subscribe(res => {
-          expect(res).toBeTruthy();
-        });
+  it('should not set the Authorization header if the token is null', inject([HttpClient], (http: HttpClient) => {
+    spyOnProperty(authenticationService, 'currentToken').and.returnValue(null);
 
-      const request = httpTestingController.expectOne('/api');
-      expect(request.request.headers.has('Authorization')).toEqual(false);
-      request.flush({data: {}});
-      httpTestingController.verify();
-    }));
+    http.get('/api').subscribe((res) => {
+      expect(res).toBeTruthy();
+    });
 
-  it('should set the Authorization header if the token is not null',
-    inject([HttpClient], (http: HttpClient) => {
-      spyOnProperty(authenticationService, 'currentToken').and.returnValue('ValidJWT');
-      authenticationService['dataSource'].next('ValidJWT');
+    const request = httpTestingController.expectOne('/api');
+    expect(request.request.headers.has('Authorization')).toEqual(false);
+    request.flush({ data: {} });
+    httpTestingController.verify();
+  }));
 
-      http.get('/api')
-        .subscribe(res => {
-          expect(res).toBeTruthy();
-        });
+  it('should set the Authorization header if the token is not null', inject([HttpClient], (http: HttpClient) => {
+    spyOnProperty(authenticationService, 'currentToken').and.returnValue('ValidJWT');
+    authenticationService['dataSource'].next('ValidJWT');
 
-      const request = httpTestingController.expectOne('/api');
-      expect(request.request.headers.has('Authorization')).toEqual(true);
-      expect(request.request.headers.get('Authorization')).toBe('ValidJWT');
-      request.flush({data: {}});
-      httpTestingController.verify();
-    }));
+    http.get('/api').subscribe((res) => {
+      expect(res).toBeTruthy();
+    });
+
+    const request = httpTestingController.expectOne('/api');
+    expect(request.request.headers.has('Authorization')).toEqual(true);
+    expect(request.request.headers.get('Authorization')).toBe('ValidJWT');
+    request.flush({ data: {} });
+    httpTestingController.verify();
+  }));
 });

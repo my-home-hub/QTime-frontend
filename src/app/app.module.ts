@@ -12,21 +12,9 @@ import { StatisticsModule } from './modules/statistics/statistics.module';
 import { TimesheetModule } from './modules/timesheet/timesheet.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    AppRoutingModule,
-    BrowserModule,
-    AuthenticationModule,
-    DeclarationModule,
-    StatisticsModule,
-    TimesheetModule,
-    NavigationModule
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-  ],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent],
+  imports: [AppRoutingModule, BrowserModule, AuthenticationModule, DeclarationModule, StatisticsModule, TimesheetModule, NavigationModule],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

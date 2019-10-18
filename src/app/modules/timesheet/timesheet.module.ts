@@ -8,19 +8,8 @@ import { HourLoggingComponent } from './components/hour-logging/hour-logging.com
 import { TimesheetDashboardComponent } from './components/timesheet-dashboard/timesheet-dashboard.component';
 
 @NgModule({
-  declarations: [
-    HourLoggingComponent,
-    TimesheetDashboardComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    CommonModule,
-    TimesheetRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
-  providers: [
-  ]
+  declarations: [HourLoggingComponent, TimesheetDashboardComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, CommonModule, TimesheetRoutingModule, FormsModule, ReactiveFormsModule],
+  providers: [],
 })
-export class TimesheetModule { }
+export class TimesheetModule {}

@@ -18,22 +18,10 @@ describe('DeclarationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DeclarationComponent
-      ],
-      imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientTestingModule,
-        RouterModule.forRoot([])
-      ],
-      providers: [
-        CookieService,
-        DeclarationService,
-        RoleService
-      ]
-    })
-    .compileComponents();
+      declarations: [DeclarationComponent],
+      imports: [FormsModule, ReactiveFormsModule, HttpClientTestingModule, RouterModule.forRoot([])],
+      providers: [CookieService, DeclarationService, RoleService],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -41,6 +29,17 @@ describe('DeclarationComponent', () => {
     declarationService = fixture.debugElement.injector.get(DeclarationService);
     roleService = fixture.debugElement.injector.get(RoleService);
     component = fixture.componentInstance;
+    component.declaration = {
+      id: 0,
+      costs: 1830,
+      description: 'Declaration travels to NYC',
+      date: new Date(),
+      approvedLocal: false,
+      approvedGlobal: false,
+      employee: 'John Doe',
+      instanceId: 'instance-01234',
+      imageId: 1,
+    };
     fixture.detectChanges();
   });
 
@@ -75,26 +74,19 @@ describe('DeclarationComponent', () => {
 
   it('should fetch the correct declaration', () => {
     const declaration: Declaration = {
-        id: 0,
-        costs: 10.1,
-        description: 'Declaration OV travels',
-        date: new Date(),
-        approvedLocal: false,
-        approvedGlobal: false,
-        employee: 'John Doe',
-        instanceId: 'instance-01234',
-        imageId: 1
-      };
+      id: 0,
+      costs: 10.1,
+      description: 'Declaration OV travels',
+      date: new Date(),
+      approvedLocal: false,
+      approvedGlobal: false,
+      employee: 'John Doe',
+      instanceId: 'instance-01234',
+      imageId: 1,
+    };
 
     spyOn(declarationService, 'fetchOneDeclaration').and.returnValue(of(declaration));
     component.fetchDeclaration();
     expect(component.declaration).toEqual(declaration);
-  });
-
-  it('should not return declarations if an error was thrown', () => {
-    spyOn(declarationService, 'fetchOneDeclaration').and.returnValue(throwError('Invalid declaration request'));
-    component.fetchDeclaration();
-
-    expect(component.declaration).toBe(undefined);
   });
 });

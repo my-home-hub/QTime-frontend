@@ -19,22 +19,15 @@ describe('DeclarationDashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DeclarationComponent,
-        DeclarationDashboardComponent
-      ],
+      declarations: [DeclarationComponent, DeclarationDashboardComponent],
       imports: [
         FormsModule,
         ReactiveFormsModule,
         HttpClientTestingModule,
-        RouterTestingModule.withRoutes([{ path: 'declaration/:id', component: DeclarationComponent }])
+        RouterTestingModule.withRoutes([{ path: 'declaration/:id', component: DeclarationComponent }]),
       ],
-      providers: [
-        RoleService,
-        CookieService
-      ]
-    })
-    .compileComponents();
+      providers: [RoleService, CookieService],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -85,7 +78,7 @@ describe('DeclarationDashboardComponent', () => {
         approvedGlobal: false,
         employee: 'John Doe',
         instanceId: 'instance-01234',
-        imageId: 1
+        imageId: 1,
       },
       {
         id: 1,
@@ -96,8 +89,8 @@ describe('DeclarationDashboardComponent', () => {
         approvedGlobal: true,
         employee: 'Henk Visser',
         instanceId: 'instance-43210',
-        imageId: 2
-      }
+        imageId: 2,
+      },
     ];
 
     spyOn(declarationService, 'fetchDeclarations').and.returnValue(of(declarations));

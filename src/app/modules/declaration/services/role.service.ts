@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RoleService {
-
   // JWT decoder is casted to a variable to allow mocking
-  jwtDecode = jwt_decode;
+  jwtDecode = jwtDecode;
 
-  constructor(private cookieService: CookieService) { }
+  constructor(private cookieService: CookieService) {}
 
   /**
    * @description gets a cookie by the name `token`
@@ -18,23 +17,21 @@ export class RoleService {
    * Decode the JWT and get the roles, this is returned as string
    * Parse string to array and return the result
    */
-  getRoles() {
+  getRoles(): string[] {
     if (this.cookieService.check('token')) {
       try {
         const roleString = this.jwtDecode(this.cookieService.get('token')).role;
         return roleString.split(' ');
-      } catch (Error) { }
+      } catch (Error) {}
     }
     return [];
   }
 
-  getEmployeeName() {
+  getEmployeeName(): string {
     if (this.cookieService.check('token')) {
       try {
-        const a = this.jwtDecode(this.cookieService.get('token'));
-        console.log(a);
         return this.jwtDecode(this.cookieService.get('token')).sub;
-      } catch (Error) { }
+      } catch (Error) {}
     }
     return '';
   }

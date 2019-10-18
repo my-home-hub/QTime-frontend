@@ -6,51 +6,50 @@ import { AuthenticationService } from '../../../authentication/services/authenti
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
   toggled = false;
   accountToggle = false;
 
   private _mobileQueryListener: () => void;
 
-  constructor(private router: Router,
-              changeDetectorRef: ChangeDetectorRef,
-              media: MediaMatcher,
-              private authenticationLibService: AuthenticationService) {
+  constructor(
+    private router: Router,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    private authenticationLibService: AuthenticationService,
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  toggleNavigation() {
+  toggleNavigation(): void {
     this.toggled = !this.toggled;
   }
 
-  navigateToUrl(routerlink: string) {
+  navigateToUrl(routerlink: string): void {
     if (this.toggled) {
       this.toggleNavigation();
     }
     this.router.navigate([routerlink]);
   }
 
-  toggleAccountNavigation() {
+  toggleAccountNavigation(): void {
     this.accountToggle = !this.accountToggle;
   }
 
-  disableAccountNavigation() {
+  disableAccountNavigation(): void {
     this.accountToggle = false;
   }
 
-  logOut() {
+  logOut(): void {
     this.authenticationLibService.logOut();
   }
 }

@@ -5,7 +5,6 @@ import { AuthenticationService } from '../../modules/authentication/services/aut
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-
   constructor(private authenticationService: AuthenticationService) {}
 
   /**
@@ -20,8 +19,8 @@ export class JwtInterceptor implements HttpInterceptor {
     if (token) {
       request = request.clone({
         setHeaders: {
-          Authorization: `${token}`
-        }
+          Authorization: `${token}`,
+        },
       });
     }
     return next.handle(request);

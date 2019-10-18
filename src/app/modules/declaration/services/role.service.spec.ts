@@ -8,13 +8,9 @@ describe('RoleService', () => {
   let roleService: RoleService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule(
-      {
-        providers: [
-          CookieService,
-          RoleService
-        ]
-      });
+    TestBed.configureTestingModule({
+      providers: [CookieService, RoleService],
+    });
     cookieService = TestBed.get(CookieService);
     roleService = TestBed.get(RoleService);
   });

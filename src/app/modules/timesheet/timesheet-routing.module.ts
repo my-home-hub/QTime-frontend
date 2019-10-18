@@ -6,25 +6,16 @@ import { Role } from '../../shared/models/role';
 const routes: Routes = [
   {
     path: 'time',
-    canActivate: [
-      AuthGuard
-    ],
+    canActivate: [AuthGuard],
     data: {
-      roles: [
-        Role.Employee,
-        Role.ManagementAssistant,
-        Role.Manager,
-        Role.Admin
-      ]
+      roles: [Role.Employee, Role.ManagementAssistant, Role.Manager, Role.Admin],
     },
-    children: [
-    ]
-  }
+    children: [],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class TimesheetRoutingModule {
-}
+export class TimesheetRoutingModule {}

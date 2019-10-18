@@ -7,29 +7,30 @@ import { RoleService } from '../../services/role.service';
 @Component({
   selector: 'app-declaration',
   templateUrl: './declaration.component.html',
-  styleUrls: ['./declaration.component.scss']
+  styleUrls: ['./declaration.component.scss'],
 })
 export class DeclarationComponent implements OnInit {
-
   declaration: Declaration;
   declarationId: string;
   roles: string[];
-  image: any;
+  image: string | ArrayBuffer;
   isImageLoading = false;
   modal = false;
   imageBlob: Blob;
 
-  constructor(private declarationService: DeclarationService,
-              private roleService: RoleService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+  constructor(
+    private declarationService: DeclarationService,
+    private roleService: RoleService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {}
 
   /**
    * @description Creates the form, used in the HTML
    * The form contains three fields, all with `disabled` Validators
    */
-  ngOnInit() {
-    this.route.params.subscribe( params => this.declarationId = params['id']);
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => (this.declarationId = params['id']));
     this.fetchDeclaration();
     this.getRoles();
   }
@@ -39,7 +40,7 @@ export class DeclarationComponent implements OnInit {
    * This triggers a change in the HTML to show a image
    * full size
    */
-  enlargeImage() {
+  enlargeImage(): void {
     this.modal = true;
   }
 
@@ -48,14 +49,14 @@ export class DeclarationComponent implements OnInit {
    * This triggers a change in the HTML to show a image
    * normal size
    */
-  closeEnlargement() {
+  closeEnlargement(): void {
     this.modal = false;
   }
 
   /**
    * @description Gets all the roles from the user
    */
-  getRoles() {
+  getRoles(): void {
     this.roles = this.roleService.getRoles();
   }
 
@@ -65,42 +66,44 @@ export class DeclarationComponent implements OnInit {
    *
    * @return boolean
    */
-  containsRole(role: string) {
+  containsRole(role: string): boolean {
     return this.roles.indexOf(role) >= 0;
   }
 
   /**
    * @description Fetches declaration by Id
    */
-  fetchDeclaration() {
-    this.declarationService.fetchOneDeclaration(this.declarationId)
-      .subscribe((declaration: Declaration) => {
-        this.fetchImage(declaration.imageId);
-        this.declaration = declaration;
-      }, console.error);
+  fetchDeclaration(): void {
+    this.declarationService.fetchOneDeclaration(this.declarationId).subscribe((declaration: Declaration) => {
+      this.fetchImage(declaration.imageId);
+      this.declaration = declaration;
+    }, console.error);
   }
 
   /**
    * @description Fetches image by Id
    */
-  fetchImage(imageId) {
+  fetchImage(imageId): void {
     this.isImageLoading = true;
-    this.declarationService.fetchDeclarationImage(imageId)
-      .subscribe((image: Blob) => {
-        this.imageBlob = image;
-        this.createImage(image);
-        this.isImageLoading = false;
-      }, console.error);
+    this.declarationService.fetchDeclarationImage(imageId).subscribe((image: Blob) => {
+      this.imageBlob = image;
+      this.createImage(image);
+      this.isImageLoading = false;
+    }, console.error);
   }
 
   /**
    * @description Creates image from blob
    */
-  createImage(image: Blob) {
+  createImage(image: Blob): void {
     const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      this.image = reader.result;
-    }, false);
+    reader.addEventListener(
+      'load',
+      () => {
+        this.image = reader.result;
+      },
+      false,
+    );
 
     if (image) {
       reader.readAsDataURL(image);
@@ -110,20 +113,22 @@ export class DeclarationComponent implements OnInit {
   /**
    * @description Approves the current declaration locally
    */
-  approveLocalDeclaration() {
-    this.declarationService.approveLocalDeclaration(this.declaration.instanceId)
+  approveLocalDeclaration(): void {
+    this.declarationService
+      .approveLocalDeclaration(this.declaration.instanceId)
       .subscribe(() => this.router.navigate(['declaration/dashboard']), console.error);
   }
 
   /**
    * @description Approves the current declaration globally
    */
-  approveGlobalDeclaration() {
-    this.declarationService.approveGlobalDeclaration(this.declaration.instanceId)
+  approveGlobalDeclaration(): void {
+    this.declarationService
+      .approveGlobalDeclaration(this.declaration.instanceId)
       .subscribe(() => this.router.navigate(['declaration/dashboard']), console.error);
   }
 
-  generatePDF() {
+  generatePDF(): void {
     const blob = new Blob([this.imageBlob], { type: 'image/jpeg' });
 
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
@@ -144,14 +149,13 @@ export class DeclarationComponent implements OnInit {
     // }, 100);
   }
 
-  base64ToArrayBuffer() {
-    const binaryString = window.atob(this.image);
-    const binaryLen = binaryString.length;
-    const bytes = new Uint8Array(binaryLen);
-    for (let i = 0; i < binaryLen; i++) {
-      const ascii = binaryString.charCodeAt(i);
-      bytes[i] = ascii;
-    }
-    return bytes;
-  }
+  // base64ToArrayBuffer(): Uint8Array {
+  //   const binaryString = window.atob(this.image);
+  //   const binaryLen = binaryString.length;
+  //   const bytes = new Uint8Array(binaryLen);
+  //   for (let i = 0; i < binaryLen; i++) {
+  //     bytes[i] = binaryString.charCodeAt(i);
+  //   }
+  //   return bytes;
+  // }
 }

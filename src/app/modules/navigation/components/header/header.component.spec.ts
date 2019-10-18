@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
-import {RouterTestingModule} from '@angular/router/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CookieService } from 'ngx-cookie-service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -9,14 +11,10 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        HeaderComponent
-      ],
-      imports: [
-        RouterTestingModule
-      ]
-    })
-    .compileComponents();
+      declarations: [HeaderComponent],
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      providers: [CookieService],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HourLoggingComponent } from './hour-logging.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('HourLoggingComponent', () => {
   let component: HourLoggingComponent;
@@ -8,9 +9,9 @@ describe('HourLoggingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HourLoggingComponent ]
-    })
-    .compileComponents();
+      declarations: [HourLoggingComponent],
+      imports: [FormsModule, ReactiveFormsModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

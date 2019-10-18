@@ -6,33 +6,31 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-declaration-tasks',
   templateUrl: './declaration-tasks.component.html',
-  styleUrls: ['./declaration-tasks.component.scss']
+  styleUrls: ['./declaration-tasks.component.scss'],
 })
 export class DeclarationTasksComponent implements OnInit {
   dataSource: Declaration[] = [];
 
-  constructor(private declarationService: DeclarationService,
-              private router: Router) { }
+  constructor(private declarationService: DeclarationService, private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.fetchDeclarations();
   }
 
   /**
    * @description Fetches all declarations
    */
-  fetchDeclarations() {
-    this.declarationService.fetchOpenDeclarations()
-      .subscribe((declarations: Declaration[]) => {
-        this.dataSource = declarations;
-      }, console.error);
+  fetchDeclarations(): void {
+    this.declarationService.fetchOpenDeclarations().subscribe((declarations: Declaration[]) => {
+      this.dataSource = declarations;
+    }, console.error);
   }
 
   /**
    * @description Navigates to
    * declaration detail page
    */
-  navigate(id: number) {
+  navigate(id: number): void {
     this.router.navigate([`declaration/${id}`]);
   }
 }

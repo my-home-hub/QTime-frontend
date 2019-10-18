@@ -6,17 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StatisticsRoutingModule } from './statistics-routing.module';
 
 @NgModule({
-  declarations: [
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    CommonModule,
-    StatisticsRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
-  providers: [
-  ]
+  declarations: [],
+  imports: [BrowserModule, BrowserAnimationsModule, CommonModule, StatisticsRoutingModule, FormsModule, ReactiveFormsModule],
+  providers: [],
 })
-export class StatisticsModule { }
+export class StatisticsModule {}

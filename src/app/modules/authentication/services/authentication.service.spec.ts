@@ -11,15 +11,10 @@ describe('AuthenticationService', () => {
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
-    TestBed.configureTestingModule(
-      {
-        imports: [
-          HttpClientTestingModule
-        ],
-        providers: [
-          CookieService
-        ]
-      });
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [CookieService],
+    });
     authenticationLibService = TestBed.get(AuthenticationService);
     cookieService = TestBed.get(CookieService);
     httpTestingController = TestBed.get(HttpTestingController);
@@ -28,7 +23,6 @@ describe('AuthenticationService', () => {
   afterEach(() => {
     httpTestingController.verify();
   });
-
 
   it('should be created', () => {
     const service: AuthenticationService = TestBed.get(AuthenticationService);
@@ -43,11 +37,12 @@ describe('AuthenticationService', () => {
       authenticationLibService['dataSource'].next(null);
     }
 
-    authenticationLibService.login({ username: 'JohnDoe', password: 'password1234 '})
+    authenticationLibService
+      .login({ username: 'JohnDoe', password: 'password1234 ' })
       .subscribe(() => {}, () => throwError('Invalid credentials'));
 
     httpTestingController
-      .expectOne(r => r.method === 'POST' && r.url.endsWith('/api/security/auth/login'))
+      .expectOne((r) => r.method === 'POST' && r.url.endsWith('/api/security/auth/login'))
       .error(new ErrorEvent('Bad Request'));
 
     tick();
@@ -63,13 +58,11 @@ describe('AuthenticationService', () => {
       authenticationLibService['dataSource'].next(null);
     }
 
-    const response = { };
-    authenticationLibService.login({ username: 'JohnDoe', password: 'password1234 '})
-      .subscribe();
+    const response = {};
+    authenticationLibService.login({ username: 'JohnDoe', password: 'password1234 ' }).subscribe();
 
-    const req = httpTestingController
-      .expectOne(r => r.method === 'POST' && r.url.endsWith('/api/security/auth/login'));
-    req.flush(response, { headers: { 'Authorization': 'ValidJWT' }, status: 200, statusText: 'OK' });
+    const req = httpTestingController.expectOne((r) => r.method === 'POST' && r.url.endsWith('/api/security/auth/login'));
+    req.flush(response, { headers: { Authorization: 'ValidJWT' }, status: 200, statusText: 'OK' });
 
     tick();
     expect(cookieService.get('token')).toBe('ValidJWT');

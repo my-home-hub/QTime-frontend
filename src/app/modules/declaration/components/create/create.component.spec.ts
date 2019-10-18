@@ -11,17 +11,9 @@ describe('CreateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        CreateComponent
-      ],
-      imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientTestingModule,
-        RouterTestingModule
-      ]
-    })
-    .compileComponents();
+      declarations: [CreateComponent],
+      imports: [FormsModule, ReactiveFormsModule, HttpClientTestingModule, RouterTestingModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -33,7 +25,6 @@ describe('CreateComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 
   it('should be invalid when form is empty', () => {
     expect(component.createForm.valid).toBeFalsy();
@@ -66,7 +57,7 @@ describe('CreateComponent', () => {
   it('should change the file variable after a fileUpload', () => {
     const file = new File([], 'Mock File');
     expect(component.file).toBe(undefined);
-    component.onFileChange({ target: { files: [ file ] }});
+    component.onFileChange({ target: { files: [file] } });
     expect(component.file).toBe(file);
   });
 });

@@ -8,22 +8,9 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
-  declarations: [
-    LoginComponent
-  ],
-  imports: [
-    BrowserAnimationsModule,
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule
-  ],
-  exports: [
-    LoginComponent
-  ],
-  providers: [
-    AuthenticationService,
-    CookieService
-  ]
+  declarations: [LoginComponent],
+  imports: [BrowserAnimationsModule, BrowserModule, FormsModule, HttpClientModule, ReactiveFormsModule],
+  exports: [LoginComponent],
+  providers: [AuthenticationService, CookieService],
 })
-export class AuthenticationModule { }
+export class AuthenticationModule {}

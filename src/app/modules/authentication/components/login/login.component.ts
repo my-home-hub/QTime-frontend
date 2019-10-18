@@ -1,41 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: 'login.component.html',
-  styleUrls: ['login.component.scss']
+  styleUrls: ['login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
   loginForm: FormGroup;
 
-  constructor(private authService: AuthenticationService,
-              private formBuilder: FormBuilder) {}
+  constructor(private authService: AuthenticationService, private formBuilder: FormBuilder) {}
 
   /**
    * @description Creates the form, used in the HTML
    * The form contains two fields, both with `required` Validators
    */
-  ngOnInit() {
+  ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
   }
 
   /**
    * @return `username` control
    */
-  get username() {
+  get username(): AbstractControl {
     return this.loginForm.get('username');
   }
 
   /**
    * @return `password` control
    */
-  get password() {
+  get password(): AbstractControl {
     return this.loginForm.get('password');
   }
 
@@ -49,12 +47,14 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.authService.login(this.loginForm.value)
-      .subscribe(() => {}, error => {
+    this.authService.login(this.loginForm.value).subscribe(
+      () => {},
+      (error) => {
         if (error.status === 401 || error.status === 403) {
-          this.loginForm.controls['password'].setErrors({'invalidCredentials': true});
+          this.loginForm.controls['password'].setErrors({ invalidCredentials: true });
         }
-      });
+      },
+    );
   }
 
   /**

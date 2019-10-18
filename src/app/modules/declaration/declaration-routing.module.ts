@@ -10,41 +10,33 @@ import { DeclarationTasksComponent } from './components/declaration-tasks/declar
 const routes: Routes = [
   {
     path: 'declaration',
-    canActivate: [
-      AuthGuard
-    ],
+    canActivate: [AuthGuard],
     data: {
-      roles: [
-        Role.Employee,
-        Role.ManagementAssistant,
-        Role.Manager,
-        Role.Admin
-      ]
+      roles: [Role.Employee, Role.ManagementAssistant, Role.Manager, Role.Admin],
     },
     children: [
       {
         path: 'dashboard',
-        component: DeclarationDashboardComponent
+        component: DeclarationDashboardComponent,
       },
       {
         path: 'task-dashboard',
-        component: DeclarationTasksComponent
+        component: DeclarationTasksComponent,
       },
       {
         path: 'create',
-        component: CreateComponent
+        component: CreateComponent,
       },
       {
         path: ':id',
         component: DeclarationComponent,
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DeclarationRoutingModule {
-}
+export class DeclarationRoutingModule {}

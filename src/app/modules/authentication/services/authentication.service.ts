@@ -5,14 +5,12 @@ import { CookieService } from 'ngx-cookie-service';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationService {
-
   private dataSource: BehaviorSubject<string>;
 
-  constructor(private http: HttpClient,
-              private cookieService: CookieService) {
+  constructor(private http: HttpClient, private cookieService: CookieService) {
     this.dataSource = new BehaviorSubject<string>(this.cookieService.get('token'));
   }
 
@@ -38,14 +36,15 @@ export class AuthenticationService {
    * @return observable
    */
   login(credentials): Observable<any> {
-    return this.http.post('/api/security/auth/login', credentials, { observe: 'response' })
-      .pipe(map((res: any) => {
+    return this.http.post('/api/security/auth/login', credentials, { observe: 'response' }).pipe(
+      map((res: any) => {
         const token = res.headers.get('Authorization');
         if (token) {
           this.cookieService.set('token', token);
           this.dataSource.next(token);
         }
-      }));
+      }),
+    );
   }
 
   /**

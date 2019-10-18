@@ -11,22 +11,8 @@ import { DeclarationService } from './services/declaration.service';
 import { DeclarationTasksComponent } from './components/declaration-tasks/declaration-tasks.component';
 
 @NgModule({
-  declarations: [
-    CreateComponent,
-    DeclarationComponent,
-    DeclarationDashboardComponent,
-    DeclarationTasksComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    CommonModule,
-    DeclarationRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
-  providers: [
-    DeclarationService
-  ]
+  declarations: [CreateComponent, DeclarationComponent, DeclarationDashboardComponent, DeclarationTasksComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, CommonModule, DeclarationRoutingModule, FormsModule, ReactiveFormsModule],
+  providers: [DeclarationService],
 })
-export class DeclarationModule { }
+export class DeclarationModule {}
