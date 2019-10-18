@@ -1,13 +1,13 @@
 import { inject, TestBed } from '@angular/core/testing';
 
-import { AuthenticationLibService } from './login.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { JwtInterceptor } from './jwt.interceptor';
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthenticationService } from '../../modules/authentication/services/authentication.service';
 
 describe('Jwt Interceptor', () => {
-  let authenticationLibService: AuthenticationLibService;
+  let authenticationService: AuthenticationService;
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
@@ -17,13 +17,13 @@ describe('Jwt Interceptor', () => {
           HttpClientTestingModule
         ],
         providers: [
-          AuthenticationLibService,
+          AuthenticationService,
           CookieService,
           JwtInterceptor,
           { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         ]
       });
-    authenticationLibService = TestBed.get(AuthenticationLibService);
+    authenticationService = TestBed.get(AuthenticationService);
     httpTestingController = TestBed.get(HttpTestingController);
   });
 
@@ -39,8 +39,6 @@ describe('Jwt Interceptor', () => {
 
   it('should not set the Authorization header if the token is null',
     inject([HttpClient], (http: HttpClient) => {
-      spyOn(authenticationLibService, 'currentToken').and.returnValue(null);
-
       http.get('/api')
         .subscribe(res => {
           expect(res).toBeTruthy();
@@ -54,8 +52,8 @@ describe('Jwt Interceptor', () => {
 
   it('should set the Authorization header if the token is not null',
     inject([HttpClient], (http: HttpClient) => {
-      spyOnProperty(authenticationLibService, 'currentToken').and.returnValue('ValidJWT');
-      authenticationLibService['dataSource'].next('ValidJWT');
+      spyOnProperty(authenticationService, 'currentToken').and.returnValue('ValidJWT');
+      authenticationService['dataSource'].next('ValidJWT');
 
       http.get('/api')
         .subscribe(res => {

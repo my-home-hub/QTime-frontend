@@ -2,9 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthenticationLibService } from '../../../../../../../authentication-lib-master/projects/authentication-lib/src/lib/login.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { CookieService } from 'ngx-cookie-service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -19,10 +17,6 @@ describe('LoginComponent', () => {
         HttpClientTestingModule,
         FormsModule,
         ReactiveFormsModule
-      ],
-      providers: [
-        AuthenticationLibService,
-        CookieService
       ]
     })
     .compileComponents();
@@ -43,7 +37,7 @@ describe('LoginComponent', () => {
   });
 
   it('should test email field validity', () => {
-    let errors = {};
+    let errors: {};
     const username = component.loginForm.controls['username'];
     expect(username.valid).toBeFalsy();
 
@@ -56,7 +50,7 @@ describe('LoginComponent', () => {
   });
 
   it('should test password field validity', () => {
-    let errors = {};
+    let errors: {};
     const password = component.loginForm.controls['password'];
 
     errors = password.errors || {};

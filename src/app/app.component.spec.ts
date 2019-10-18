@@ -1,10 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import {AuthenticationLibModule} from 'login';
-import {DeclarationLibModule} from 'declaration-lib';
-import {NavigationModule} from './modules/navigation/navigation.module';
-import {RouterTestingModule} from '@angular/router/testing';
-import {AppRoutingModule} from './app-routing.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppRoutingModule } from './app-routing.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -13,10 +10,7 @@ describe('AppComponent', () => {
         AppComponent
       ],
       imports: [
-        AuthenticationLibModule,
-        DeclarationLibModule,
         RouterTestingModule,
-        NavigationModule,
         AppRoutingModule
       ]
     }).compileComponents();

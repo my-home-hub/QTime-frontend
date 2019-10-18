@@ -3,7 +3,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthGuard } from './auth.guard';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Role } from '../../../../../role-guard-lib-master/projects/role-guard-lib/src/lib/role';
+import { Role } from '../models/role';
 
 describe('AuthGuard', () => {
   let cookieService: CookieService;
@@ -27,7 +27,7 @@ describe('AuthGuard', () => {
   });
 
   it('should return false if cookie `token` does not exist',
-    inject([AuthGuard], (guard: AuthGuard) => {
+    inject([AuthGuard], () => {
       cookieService = TestBed.get(CookieService);
       const authGuard: AuthGuard = TestBed.get(AuthGuard);
 
@@ -39,7 +39,7 @@ describe('AuthGuard', () => {
   }));
 
   it('should return false if the JWT is incorrect',
-    inject([AuthGuard], (guard: AuthGuard) => {
+    inject([AuthGuard], () => {
       cookieService = TestBed.get(CookieService);
       const authGuard: AuthGuard = TestBed.get(AuthGuard);
 
@@ -49,7 +49,7 @@ describe('AuthGuard', () => {
   }));
 
   it('should return false if user does not have the correct role',
-    inject([AuthGuard], (guard: AuthGuard) => {
+    inject([AuthGuard], () => {
       cookieService = TestBed.get(CookieService);
       const authGuard: AuthGuard = TestBed.get(AuthGuard);
 
@@ -64,7 +64,7 @@ describe('AuthGuard', () => {
   }));
 
   it('should return true if the cookie `token` contains a valid JWT and the user has the correct role',
-    inject([AuthGuard], (guard: AuthGuard) => {
+    inject([AuthGuard], () => {
       cookieService = TestBed.get(CookieService);
       const authGuard: AuthGuard = TestBed.get(AuthGuard);
 

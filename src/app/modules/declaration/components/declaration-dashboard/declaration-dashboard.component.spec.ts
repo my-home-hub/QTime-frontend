@@ -79,18 +79,24 @@ describe('DeclarationDashboardComponent', () => {
       {
         id: 0,
         costs: 10.1,
+        description: 'Declaration for parking 19-02-2000',
+        date: new Date(),
         approvedLocal: false,
         approvedGlobal: false,
         employee: 'John Doe',
-        instanceId: 'instance-01234'
+        instanceId: 'instance-01234',
+        imageId: 1
       },
       {
         id: 1,
         costs: 20.3,
+        description: 'Lunch declaration, Millers',
+        date: new Date(),
         approvedLocal: false,
         approvedGlobal: true,
         employee: 'Henk Visser',
-        instanceId: 'instance-43210'
+        instanceId: 'instance-43210',
+        imageId: 2
       }
     ];
 

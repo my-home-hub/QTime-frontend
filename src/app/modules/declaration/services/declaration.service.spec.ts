@@ -32,10 +32,13 @@ describe('DeclarationService', () => {
     const response: Declaration = {
       id: 0,
       costs: 10.1,
+      description: 'Broken mouse declaration',
+      date: new Date(),
       approvedLocal: false,
       approvedGlobal: false,
       employee: 'John Doe',
-      instanceId: 'instance-01234'
+      instanceId: 'instance-01234',
+      imageId: 1
     };
 
     declarationService.fetchOneDeclaration('87')
@@ -50,21 +53,27 @@ describe('DeclarationService', () => {
     const response: Declaration[] = [{
       id: 0,
       costs: 10.1,
+      description: 'Broken mouse declaration',
+      date: new Date(),
       approvedLocal: false,
       approvedGlobal: false,
       employee: 'John Doe',
-      instanceId: 'instance-01234'
+      instanceId: 'instance-01234',
+      imageId: 1
     },
     {
       id: 1,
       costs: 20.3,
+      description: 'Parking declaration, Malieveld',
+      date: new Date(),
       approvedLocal: false,
       approvedGlobal: true,
       employee: 'Henk Visser',
-      instanceId: 'instance-43210'
+      instanceId: 'instance-43210',
+      imageId: 2
     }];
 
-    declarationService.fetchDeclarations()
+    declarationService.fetchDeclarations(response[0].employee)
       .subscribe(res => expect(res).toEqual(response), () => throwError('Invalid declaration'));
 
     httpTestingController

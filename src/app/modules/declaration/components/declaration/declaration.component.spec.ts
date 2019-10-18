@@ -8,7 +8,7 @@ import { RoleService } from '../../services/role.service';
 import { Declaration } from '../../models/declaration';
 import { of, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-import {ActivatedRoute, RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 describe('DeclarationComponent', () => {
   let component: DeclarationComponent;
@@ -77,10 +77,13 @@ describe('DeclarationComponent', () => {
     const declaration: Declaration = {
         id: 0,
         costs: 10.1,
+        description: 'Declaration OV travels',
+        date: new Date(),
         approvedLocal: false,
         approvedGlobal: false,
         employee: 'John Doe',
-        instanceId: 'instance-01234'
+        instanceId: 'instance-01234',
+        imageId: 1
       };
 
     spyOn(declarationService, 'fetchOneDeclaration').and.returnValue(of(declaration));

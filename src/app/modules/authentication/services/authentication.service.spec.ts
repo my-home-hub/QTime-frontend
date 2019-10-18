@@ -4,7 +4,6 @@ import { AuthenticationService } from './authentication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { throwError } from 'rxjs';
-import { JwtInterceptor } from '../../../../../../authentication-lib-master/projects/authentication-lib/src/lib/jwt.interceptor';
 
 describe('AuthenticationService', () => {
   let cookieService: CookieService;
@@ -18,8 +17,7 @@ describe('AuthenticationService', () => {
           HttpClientTestingModule
         ],
         providers: [
-          CookieService,
-          JwtInterceptor
+          CookieService
         ]
       });
     authenticationLibService = TestBed.get(AuthenticationService);
