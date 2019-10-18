@@ -18,8 +18,9 @@ cache:
     - ./node_modules
 
 install:
-  - npm install
+  - npm install -g @angular/cli
 
 script:
   - npm run lint
-  - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
+  - npm run test
+  - ng build --prod --base-href https://github.com/AevusBV/QTime-frontend/
