@@ -12,6 +12,8 @@ addons:
       - google-chrome
     packages:
       - google-chrome-stable
+  sonarcloud:
+    organization: aevusbv
 
 cache:
   directories:
@@ -25,4 +27,5 @@ before_script:
 script:
   - npm run lint
   - npm run test
+  - sonar-scanner -Dsonar.verbose=true -X
   - ng build --prod --base-href https://github.com/AevusBV/QTime-frontend/
