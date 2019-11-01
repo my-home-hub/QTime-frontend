@@ -8,7 +8,7 @@ header {
   min-height: 100vh;
   height: 100%;
   position: fixed;
-  border-right: 2px solid rgba(128, 128, 128, 0.3);
+  border-right: 2px solid var(--nav-shadow);
   text-align: left;
   width: 300px;
   padding: 0 20px;
@@ -27,7 +27,7 @@ header {
   height: 200px;
   width: 100%;
   text-align: center;
-  color: #ffffff;
+  color: var(--white);
   line-height: 200px;
   box-sizing: border-box;
 }
@@ -62,7 +62,7 @@ header {
     display: inline-block;
     vertical-align: bottom;
     text-decoration: none;
-    color: #ffffff;
+    color: var(--white);
     padding: 0 20px;
     text-transform: uppercase;
     font-weight: bold;
@@ -72,25 +72,25 @@ header {
   }
 
   &__item span:hover {
-    color: #9c4147;
+    color: var(--nav-shadow);
     cursor: pointer;
   }
 
   &__item span:focus {
     outline: 0;
-    border-right: 4px solid #ffffff;
+    border-right: 4px solid var(--white);
   }
 
   &__icon {
     vertical-align: middle;
-    color: #ffffff;
+    color: var(--white);
   }
 }
 
 @media (min-width: 768px) {
   .main-menu {
     visibility: visible;
-    background: #ad4848;
+    background: var(--primary);
   }
   .nav {
     display: none;
@@ -118,6 +118,7 @@ header {
 // || * * *                   Main section                                                          * * * ||
 // ---------------------------------------------------------------------------------------------------------
 .main-section {
+  height: 100vh;
   flex: 1 0 auto;
   position: relative;
   margin-left: 300px;
@@ -174,7 +175,7 @@ header {
 .hamburger-icon {
   display: block;
   cursor: pointer;
-  color: #a0a0a0;
+  color: var(--white);
   transform: rotate(0deg);
   transition: .3s cubic-bezier(0.165, 0.840, 0.440, 1.000);
 
@@ -217,7 +218,7 @@ header {
     display: block;
     position: absolute;
     border-radius: 50%;
-    background-color: #ad4848;
+    background-color: var(--primary);
     width: 284vmax;
     height: 284vmax;
     top: -142vmax;
@@ -236,7 +237,7 @@ header {
   }
 
   .hamburger-icon {
-    color: white;
+    color: var(--white);
     transform: rotate(180deg);
 
     &__circle {
@@ -308,7 +309,7 @@ header {
   list-style: none;
   font-size: 11px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
-  background: #fff;
+  background: var(--white);
   padding: 10px 0 10px 0;
   border-radius: 5px 5px 5px 5px;
 }
@@ -357,7 +358,9 @@ header {
 // || * * *                   Rest of page                                                          * * * ||
 // ---------------------------------------------------------------------------------------------------------
 .router-outlet {
-  padding: 20px;
+  display: block;
+  height: calc(100% - 80px);
+  padding: 40px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;

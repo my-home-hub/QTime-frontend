@@ -1,0 +1,105 @@
+.personal-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.sheet {
+  background: var(--white);
+  height: 100%;
+  width: 100%;
+  padding: 40px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  &__header {
+    padding-bottom: 10px;
+    color: var(--grey);
+    font-size: 32px;
+    font-weight: bold;
+    border-bottom: 1px solid var(--grey-light-2);
+  }
+
+  &__body {
+    padding-top: 40px;
+  }
+}
+
+.hour-filling-sheet {
+  margin-right: 40px;
+}
+
+.personal-information {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 300px;
+}
+
+.information-sheet {
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  margin-bottom: 40px;
+}
+
+.information-sheet:last-child {
+  margin-bottom: 0;
+}
+
+
+
+
+
+
+.input-wrapper {
+  margin-bottom: 30px;
+}
+
+label {
+  margin: 0;
+  padding: 0;
+  color: #B5B5B5;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+input {
+  border: 1px solid #DCDCDC;
+  color: var(--grey);
+  padding: 10px 20px;
+  width: 100%;
+  margin-top: 10px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.btn-std {
+  background-color: var(--secondary);
+  -moz-border-radius: 24px;
+  -webkit-border-radius: 24px;
+  border-radius: 24px;
+  display: inline-block;
+  cursor: pointer;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: bold;
+  padding: 14px 80px;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-std:hover {
+}
+
+.btn-std:active {
+  position: relative;
+  top: 1px;
+}
+
+.btn-std:focus {
+  outline: 0;
+}

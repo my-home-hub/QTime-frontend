@@ -1,131 +1,142 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: #DB855E;
+  --secondary: #337AE5;
+
+  --white: #FFFFFF;
+  --grey-light: #F1F1F1;
+  --grey-light-2: #B8B8B8;
+  --grey: #4E505D;
+
+  --nav-shadow: rgba(219, 133, 94, 2);
+}
+
 html, body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: #f9f9f9;
-  font-family: 'Roboto', sans-serif;
+  background: var(--grey-light);
+  font-family: 'Raleway', sans-serif;
 }
 
-.group {
-  position: relative;
-  margin-bottom: 10px;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="date"] {
-  font-size: 15px;
-  padding: 10px 10px 10px 5px;
-  background: none;
-  display: block;
-  width: 400px;
-  border: none;
-  border-bottom: 1px solid #757575;
-}
-
-input[type="date"] ~ label {
-  top: -20px;
-}
-
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="date"]:focus {
-  outline: none;
-}
-
-label {
-  color: #999;
-  font-size: 15px;
-  font-weight: normal;
-  position: absolute;
-  pointer-events: none;
-  left: 5px;
-  top: 10px;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
-}
-
-input[type="text"]:focus ~ label,
-input[type="password"]:focus ~ label,
-input[type="text"]:valid ~ label,
-input[type="date"]:valid ~ label {
-  top: -20px;
-  font-size: 14px;
-  color: #9C032D;
-}
-
-input[type="date"]:focus ~ label,
-input[type="date"]:valid ~ label {
-  font-size: 14px;
-  color: #9C032D;
-}
-
-.bar {
-  position: relative;
-  display: block;
-  width: 400px;
-}
-
-.bar:before, .bar:after {
-  content: '';
-  height: 2px;
-  width: 0;
-  bottom: 1px;
-  position: absolute;
-  background: #9C032D;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
-}
-
-.bar:before {
-  left: 50%;
-}
-
-.bar:after {
-  right: 50%;
-}
-
-input[type="text"]:focus ~ .bar:before,
-input[type="password"]:focus ~ .bar:before,
-input[type="date"]:focus ~ .bar:before,
-input[type="text"]:focus ~ .bar:after,
-input[type="password"]:focus ~ .bar:after,
-input[type="date"]:focus ~ .bar:after {
-  width: 50%;
-}
-
-.highlight {
-  position: absolute;
-  height: 60%;
-  width: 100px;
-  top: 25%;
-  left: 0;
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-
-@media only screen and (max-width: 600px) {
-  .bar,
-  input[type="text"],
-  input[type="password"],
-  input[type="date"] {
-    width: 90%;
-  }
-}
-
-.error-wrapper {
-  min-height: 50px;
-  width: 90%;
-}
-
-.error-msg {
-  color: #9c032c;
-  text-align: left;
-}
+//.group {
+//  position: relative;
+//  margin-bottom: 10px;
+//}
+//
+//input[type="text"],
+//input[type="password"],
+//input[type="date"] {
+//  font-size: 15px;
+//  padding: 10px 10px 10px 5px;
+//  background: none;
+//  display: block;
+//  width: 400px;
+//  border: none;
+//  border-bottom: 1px solid #757575;
+//}
+//
+//input[type="date"] ~ label {
+//  top: -20px;
+//}
+//
+//input[type="text"]:focus,
+//input[type="password"]:focus,
+//input[type="date"]:focus {
+//  outline: none;
+//}
+//
+//label {
+//  color: #999;
+//  font-size: 15px;
+//  font-weight: normal;
+//  position: absolute;
+//  pointer-events: none;
+//  left: 5px;
+//  top: 10px;
+//  transition: 0.2s ease all;
+//  -moz-transition: 0.2s ease all;
+//  -webkit-transition: 0.2s ease all;
+//}
+//
+//input[type="text"]:focus ~ label,
+//input[type="password"]:focus ~ label,
+//input[type="text"]:valid ~ label,
+//input[type="date"]:valid ~ label {
+//  top: -20px;
+//  font-size: 14px;
+//  color: #9C032D;
+//}
+//
+//input[type="date"]:focus ~ label,
+//input[type="date"]:valid ~ label {
+//  font-size: 14px;
+//  color: #9C032D;
+//}
+//
+//.bar {
+//  position: relative;
+//  display: block;
+//  width: 400px;
+//}
+//
+//.bar:before, .bar:after {
+//  content: '';
+//  height: 2px;
+//  width: 0;
+//  bottom: 1px;
+//  position: absolute;
+//  background: #9C032D;
+//  transition: 0.2s ease all;
+//  -moz-transition: 0.2s ease all;
+//  -webkit-transition: 0.2s ease all;
+//}
+//
+//.bar:before {
+//  left: 50%;
+//}
+//
+//.bar:after {
+//  right: 50%;
+//}
+//
+//input[type="text"]:focus ~ .bar:before,
+//input[type="password"]:focus ~ .bar:before,
+//input[type="date"]:focus ~ .bar:before,
+//input[type="text"]:focus ~ .bar:after,
+//input[type="password"]:focus ~ .bar:after,
+//input[type="date"]:focus ~ .bar:after {
+//  width: 50%;
+//}
+//
+//.highlight {
+//  position: absolute;
+//  height: 60%;
+//  width: 100px;
+//  top: 25%;
+//  left: 0;
+//  pointer-events: none;
+//  opacity: 0.5;
+//}
+//
+//
+//@media only screen and (max-width: 600px) {
+//  .bar,
+//  input[type="text"],
+//  input[type="password"],
+//  input[type="date"] {
+//    width: 90%;
+//  }
+//}
+//
+//.error-wrapper {
+//  min-height: 50px;
+//  width: 90%;
+//}
+//
+//.error-msg {
+//  color: #9c032c;
+//  text-align: left;
+//}
 
 .btn-standard {
   background-color: #ad4848;

@@ -1,0 +1,70 @@
+<section class="personal-page">
+  <div class="sheet hour-filling-sheet">
+    <div class="sheet__header">
+      How much did you work today?
+    </div>
+    <div class="sheet__body">
+      <form [formGroup]="hourLoggingForm" class="create__form" (ngSubmit)="addHours()">
+
+        <div class="input-wrapper">
+          <label for="project">Project</label>
+          <input type="text" id="project" name="project" formControlName="project" required>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="hours">Hours worked</label>
+          <input type="text" id="hours" name="hours" formControlName="hours" required>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="date">Project</label>
+          <input type="date" id="date" name="date" formControlName="date" required>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="kilometers">Kilometers</label>
+          <input type="text" id="kilometers" name="kilometers" formControlName="kilometers" required>
+        </div>
+
+<!--        <div class="error-wrapper">-->
+<!--          <div *ngIf="date.invalid && (date.dirty || date.touched)" class="error-msg">-->
+<!--            <div *ngIf="date.errors.required">-->
+<!--              Date is required.-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="group">-->
+<!--          <input type="date" id="date" name="date" formControlName="date" required>-->
+<!--          <span class="highlight"></span>-->
+<!--          <span class="bar"></span>-->
+<!--          <label for="date">Date</label>-->
+<!--        </div>-->
+
+<!--        <div class="error-wrapper">-->
+<!--          <div *ngIf="date.invalid && (date.dirty || date.touched)" class="error-msg">-->
+<!--            <div *ngIf="date.errors.required">-->
+<!--              Date is required.-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <button class="btn-std">Add my daily hours</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="personal-information">
+    <div class="sheet information-sheet">
+      Text
+    </div>
+
+    <div class="sheet information-sheet">
+      Text
+    </div>
+
+    <div class="sheet information-sheet">
+      Text
+    </div>
+  </div>
+</section>
